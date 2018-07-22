@@ -1,11 +1,18 @@
 package com.publisher
 
+import spock.lang.Issue
+import spock.lang.Narrative
 import spock.lang.Specification
+import spock.lang.Title
 
 /**
  *
  * @author ksipe
  */
+@Title("this has a title")
+@Narrative("""
+this is a description of what this thing is suppose to do
+""")
 class PublisherSpec extends Specification {
 
     /**
@@ -34,13 +41,9 @@ class PublisherSpec extends Specification {
         def publisher = new Publisher()
         publisher.subscribers << subscriber1 << subscriber2
 
-        when:
-        publisher.fire("event")
+        // uncomment and the then body
+//        when:
+//        publisher.fire("event")
 
-        then:
-        1 * subscriber1.receive("event") >> { throw new Exception() }
-
-        then:
-        1 * subscriber2.receive("event")
     }
 }
